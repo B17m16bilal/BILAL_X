@@ -21,6 +21,12 @@ except ImportError:
     REQUESTS_OK = False
 
 app = Flask(__name__)
+from flask import send_from_directory
+
+@app.route('/google78ab5f00e22cd85c.html')
+def google_verification():
+    # يفترض أن الملف موجود في مجلد static
+    return send_from_directory('static', 'google78ab5f00e22cd85c.html')
 from flask import send_from_directory  # أضف هذا السطر أعلى الملف إذا لم يكن موجودًا
 
 @app.route('/google78ab5f00e22cd85c.html')
