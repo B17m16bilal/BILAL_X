@@ -172,6 +172,15 @@ HTML = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BILAL_X | مساعد Linux والبرمجة الذكي بتقنية Groq AI | أفضل مساعد تقني عربي</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XLJTKWYDFM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XLJTKWYDFM');
+</script>
 
 <!-- SEO Meta Tags الرئيسية -->
 <meta name="description" content="BILAL_X: مساعد Linux والبرمجة الذكي المجاني. يدعم Python, Bash, Git, الشبكات، الأمن السيبراني، DevOps، الذكاء الاصطناعي. يعمل بتقنية Groq AI. اسأل عن أي أمر Linux أو مشكلة برمجية واحصل على إجابة فورية بالعربية.">
