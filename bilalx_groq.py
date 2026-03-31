@@ -21,6 +21,11 @@ except ImportError:
     REQUESTS_OK = False
 
 app = Flask(__name__)
+from flask import send_from_directory  # أضف هذا السطر أعلى الملف إذا لم يكن موجودًا
+
+@app.route('/google78ab5f00e22cd85c.html')
+def google_verification():
+    return send_from_directory('static', 'google78ab5f00e22cd85c.html')
 
 GROQ_MODEL = "llama-3.3-70b-versatile"
 GROQ_URL   = "https://api.groq.com/openai/v1/chat/completions"
