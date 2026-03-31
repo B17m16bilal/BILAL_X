@@ -152,7 +152,10 @@ def _local_command(msg: str) -> str | None:
                 "/encode [نص]  Base64\n"
                 "/decode [نص]  فك Base64")
     return None
-
+def google_verification():
+  @app.route('/google78ab5f00e22cd85c.html')
+def google_verification():
+    return send_from_directory('static', 'google78ab5f00e22cd85c.html')
 
 # ══════════════════════════════════════════════════════════════
 #  واجهة HTML — المفتاح يُخزن في localStorage فقط
