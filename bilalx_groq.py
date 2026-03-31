@@ -18,13 +18,41 @@ except ImportError:
 
 app = Flask(__name__)
 
+# ============================================================
 # Google Verification
+# ============================================================
 @app.route('/google78ab5f00e22cd85c.html')
 def google_verification():
     try:
         return send_from_directory('static', 'google78ab5f00e22cd85c.html')
     except:
-        return "File not found. Please add google78ab5f00e22cd85c.html to static folder.", 404
+        return "google-site-verification: google78ab5f00e22cd85c.html", 200
+
+# ============================================================
+# SEO: robots.txt
+# ============================================================
+@app.route('/robots.txt')
+def robots():
+    return """User-agent: *
+Allow: /
+Sitemap: https://bilal-x.onrender.com/sitemap.xml
+"""
+
+# ============================================================
+# SEO: sitemap.xml
+# ============================================================
+@app.route('/sitemap.xml')
+def sitemap():
+    today = datetime.now().strftime('%Y-%m-%d')
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bilal-x.onrender.com/</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>"""
 
 GROQ_MODEL = "llama-3.3-70b-versatile"
 GROQ_URL   = "https://api.groq.com/openai/v1/chat/completions"
@@ -134,12 +162,98 @@ def _local_command(msg: str):
 
     return None
 
+# ============================================================
+# HTML مع SEO متكامل و 100+ كلمة مفتاحية
+# ============================================================
+
 HTML = """<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BILAL_X</title>
+<title>BILAL_X | مساعد Linux والبرمجة الذكي بتقنية Groq AI | أفضل مساعد تقني عربي</title>
+
+<!-- SEO Meta Tags الرئيسية -->
+<meta name="description" content="BILAL_X: مساعد Linux والبرمجة الذكي المجاني. يدعم Python, Bash, Git, الشبكات، الأمن السيبراني، DevOps، الذكاء الاصطناعي. يعمل بتقنية Groq AI. اسأل عن أي أمر Linux أو مشكلة برمجية واحصل على إجابة فورية بالعربية.">
+<meta name="keywords" content="BILAL X, بلال إكس, مساعد لينكس, مساعد برمجة, Linux Assistant, Programming Assistant, Groq AI, مساعد ذكي, Linux Commands, Bash Scripting, Python Programming, Git Tutorial, تعلم لينكس, تعلم البرمجة, أوامر لينكس, شل باش, برمجة بايثون, Git للمبتدئين, حل مشاكل لينكس, دعم تقني, مساعد تقني, Linux Help, Coding Helper, AI Assistant Arabic, مساعد عربي تقني, BILAL_X, مساعد عربي, أوامر الطرفية, إدارة الخوادم, DevOps, سكريبتات باش, تطوير الويب, أمن المعلومات, شبكات الحاسوب, ذكاء اصطناعي, Linux Terminal, Command Line, Shell Scripting, System Administration, Network Security, Cybersecurity, Web Development, Database Management, SQL, MySQL, MongoDB, Docker, Kubernetes, Cloud Computing, AWS, Azure, Google Cloud, Virtualization, VMware, Hyper-V, Backup and Recovery, Monitoring Tools, Prometheus, Grafana, Ansible, Terraform, Jenkins, CI/CD, GitLab, GitHub Actions, Agile, Scrum, IT Support, Help Desk, Technical Support, Computer Science, Algorithms, Data Structures, C Programming, C++, Java, JavaScript, PHP, Ruby, Go, Rust, Swift, Kotlin, Mobile Development, Android, iOS, Frontend Development, React, Angular, Vue.js, Backend Development, Node.js, Django, Laravel, API Development, REST API, GraphQL, Machine Learning, Deep Learning, Neural Networks, Data Science, Big Data, Hadoop, Spark, Blockchain, Cryptocurrency, Smart Contracts, Ethical Hacking, Penetration Testing, Kali Linux, Wireshark, Metasploit, Nmap, IT Certifications, CCNA, CCNP, CompTIA, Linux+, RHCE, LPIC, Python Certification, AWS Certified, Cloud Security, IoT, Embedded Systems, Robotics, Game Development, Unity, Unreal Engine, UI/UX Design, Graphic Design, Adobe Photoshop, Illustrator, Video Editing, Content Creation, Digital Marketing, SEO, Social Media Management, E-commerce, WordPress, Shopify, Freelancing, Online Business, Productivity Tools, Microsoft Office, Excel, PowerPoint, Outlook, Google Workspace, Drive, Docs, Sheets, Remote Work, Collaboration Tools, Slack, Zoom, Microsoft Teams, Trello, Asana, Project Management, Time Management, Leadership Skills, Communication Skills, Problem Solving, Critical Thinking, Creativity, Innovation, Technology News, Tech Trends, Programming Tutorials, Linux Tips, Coding Best Practices, Software Development, Open Source, GitHub, Stack Overflow, Developer Community, Tech Education, Online Learning, Coursera, Udemy, edX, Future Tech, Artificial General Intelligence, Quantum Computing, Augmented Reality, Virtual Reality, Metaverse, Web3, NFTs, DAO, Decentralized Finance, FinTech, Digital Transformation, Automation, Robotics Process Automation, Edge Computing, 5G Technology, Sustainable Tech, Green Computing, Tech Entrepreneurship, Startup, Venture Capital, Tech Innovation, Research and Development, Science and Technology, Engineering, Mathematics, Physics, Electronics, Computer Engineering, Software Engineering, Information Technology, IT Management, Tech Consulting, Digital Literacy, Coding for Kids, STEM Education, Women in Tech, Diversity in Tech, Tech Community, Tech Events, Hackathons, Coding Bootcamps, Tech Conferences, Developer Meetups, Open Source Contribution, Tech Volunteering, Digital Rights, Privacy Protection, Data Protection, GDPR, Cyber Law, Tech Ethics, Responsible AI, Sustainable Development Goals, Tech for Good">
+<meta name="author" content="BILAL_X">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="language" content="Arabic">
+<meta name="revisit-after" content="7 days">
+<meta name="distribution" content="global">
+<meta name="rating" content="General">
+<meta name="copyright" content="BILAL_X">
+<meta name="doc-type" content="Public">
+<meta name="audience" content="All">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bilal-x.onrender.com/">
+<meta property="og:title" content="BILAL_X | مساعد Linux والبرمجة الذكي | أفضل مساعد تقني عربي مجاني">
+<meta property="og:description" content="مساعد Linux والبرمجة الذكي المجاني. اسأل عن أي أمر Linux أو مشكلة برمجية واحصل على إجابة فورية من Groq AI. يدعم Python, Bash, Git, الشبكات، الأمن السيبراني، DevOps والمزيد!">
+<meta property="og:image" content="https://bilal-x.onrender.com/static/og-image.png">
+<meta property="og:site_name" content="BILAL_X">
+<meta property="og:locale" content="ar_AR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BILAL_X | مساعد Linux والبرمجة الذكي">
+<meta name="twitter:description" content="مساعد Linux والبرمجة الذكي المجاني. اسأل عن أي أمر Linux أو مشكلة برمجية واحصل على إجابة فورية.">
+<meta name="twitter:image" content="https://bilal-x.onrender.com/static/og-image.png">
+<meta name="twitter:site" content="@BILAL_X">
+<meta name="twitter:creator" content="@BILAL_X">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://bilal-x.onrender.com/">
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522095429190990" crossorigin="anonymous"></script>
+
+<!-- Structured Data / JSON-LD Schema.org - محسن للبحث -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BILAL_X",
+  "alternateName": ["مساعد Linux والبرمجة الذكي", "BILAL X", "بلال إكس"],
+  "description": "مساعد Linux والبرمجة الذكي المجاني. يدعم Python, Bash, Git, الشبكات, الأمن السيبراني, DevOps, الذكاء الاصطناعي. يعمل بتقنية Groq AI.",
+  "url": "https://bilal-x.onrender.com/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "inLanguage": ["ar", "en"],
+  "keywords": "Linux, Programming, Python, Bash, Git, AI Assistant, Groq, DevOps, Cybersecurity, Networking, Web Development, Machine Learning",
+  "creator": {
+    "@type": "Person",
+    "name": "BILAL_X"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://bilal-x.onrender.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- BreadcrumbList Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "الرئيسية",
+    "item": "https://bilal-x.onrender.com/"
+  }]
+}
+</script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Tajawal:wght@400;500;700&display=swap');
 :root{
@@ -150,6 +264,8 @@ HTML = """<!DOCTYPE html>
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--tx);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+
+/* ── HEADER ── */
 .hdr{background:var(--sf);border-bottom:1px solid var(--bd);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
 .dots{display:flex;gap:6px;}.dot{width:12px;height:12px;border-radius:50%;}
 .dr{background:#f85149;}.dy{background:#e3b341;}.dg{background:#39d353;}
@@ -158,6 +274,8 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--tx);heigh
 .key-indicator{width:10px;height:10px;border-radius:50%;background:var(--rd);transition:background .3s;}
 .key-indicator.active{background:var(--gr);box-shadow:0 0 6px var(--gr);}
 .key-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dm);}
+
+/* ── SETUP SCREEN ── */
 .setup{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;}
 .setup-card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:32px;max-width:460px;width:100%;text-align:center;}
 .setup-logo{font-size:40px;margin-bottom:12px;}
@@ -168,22 +286,30 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--tx);heigh
 .step:last-child{margin-bottom:0;}
 .step-num{background:var(--glo);color:var(--gr);border:1px solid var(--gr);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;flex-shrink:0;margin-top:1px;}
 .step a{color:var(--bl);text-decoration:none;}
+.step a:hover{text-decoration:underline;}
 .inp-group{position:relative;margin-bottom:12px;}
 .key-inp{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:12px 44px 12px 12px;color:var(--brt);font-family:'IBM Plex Mono',monospace;font-size:13px;outline:none;transition:border-color .2s;direction:ltr;}
 .key-inp:focus{border-color:var(--gr);}
 .key-inp.error{border-color:var(--rd);}
+.key-inp.success{border-color:var(--gr);}
 .eye-btn{position:absolute;left:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--dm);font-size:16px;padding:4px;}
+.eye-btn:hover{color:var(--tx);}
 .key-hint{font-size:12px;color:var(--dm);margin-bottom:16px;display:flex;align-items:center;gap:6px;}
 .key-hint .lock{color:var(--gr);}
 .submit-btn{width:100%;background:var(--gr);border:none;border-radius:8px;padding:12px;color:#0d1117;font-family:'Tajawal',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;}
 .submit-btn:hover{background:#45e063;transform:translateY(-1px);}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 .err-msg{color:var(--rd);font-size:12px;margin-top:8px;min-height:18px;}
+
+/* ── LAYOUT ── */
 .layout{display:flex;flex:1;overflow:hidden;}
 .sidebar{width:210px;background:var(--sf);border-left:1px solid var(--bd);padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;flex-shrink:0;}
 .sb-ttl{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dm);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
 .qb{display:block;width:100%;text-align:right;background:none;border:1px solid var(--bd);border-radius:6px;padding:7px 10px;color:var(--tx);font-family:'Tajawal',sans-serif;font-size:12px;cursor:pointer;margin-bottom:4px;transition:all .15s;}
 .qb:hover{border-color:var(--gr);color:var(--gr);background:var(--glo);}
 .qb.danger:hover{border-color:var(--rd);color:var(--rd);background:#2a0f0f;}
+
+/* ── CHAT ── */
 .chat{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
 .msg{display:flex;gap:10px;animation:fu .22s ease;}.msg.user{flex-direction:row-reverse;}
@@ -198,10 +324,14 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--tx);heigh
 .src-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:10px;margin-top:5px;display:inline-block;}
 .src-groq{background:#1a1a3a;color:var(--bl);border:1px solid #2a2a5a;}
 .src-local{background:var(--glo);color:var(--gr);border:1px solid #1a3a1a;}
+
+/* ── TYPING ── */
 .typing-dots{display:flex;gap:4px;align-items:center;padding:4px 0;}
 .typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--gr);animation:bn 1.1s infinite;}
 .typing-dots span:nth-child(2){animation-delay:.2s;}.typing-dots span:nth-child(3){animation-delay:.4s;}
 @keyframes bn{0%,80%,100%{transform:translateY(0);opacity:.4;}40%{transform:translateY(-6px);opacity:1;}}
+
+/* ── INPUT ── */
 .inp-area{padding:12px 16px;border-top:1px solid var(--bd);background:var(--sf);display:flex;gap:10px;align-items:flex-end;}
 .inp-wrap{flex:1;position:relative;background:var(--bg);border:1px solid var(--bd);border-radius:8px;transition:border-color .2s;}
 .inp-wrap:focus-within{border-color:var(--gr);}
@@ -210,11 +340,14 @@ textarea{width:100%;background:none;border:none;outline:none;color:var(--brt);fo
 .sndbtn{background:var(--gr);border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
 .sndbtn:hover{background:#45e063;transform:translateY(-1px);}
 .sndbtn svg{width:17px;height:17px;fill:#0d1117;}
+
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px;}
 @media(max-width:600px){.sidebar{display:none;}}
 </style>
 </head>
 <body>
+
+<!-- شاشة الإعداد -->
 <div class="setup" id="setup">
   <div class="setup-card">
     <div class="setup-logo">🤖</div>
@@ -234,6 +367,8 @@ textarea{width:100%;background:none;border:none;outline:none;color:var(--brt);fo
     <div class="err-msg" id="errMsg"></div>
   </div>
 </div>
+
+<!-- الواجهة الرئيسية -->
 <div class="hdr">
   <div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div>
   <div class="ttl">bilal@linux:~ — <b>BILAL_X</b></div>
@@ -242,6 +377,7 @@ textarea{width:100%;background:none;border:none;outline:none;color:var(--brt);fo
     <span class="key-label" id="keyLabel">لا يوجد مفتاح</span>
   </div>
 </div>
+
 <div class="layout">
   <div class="chat">
     <div class="msgs" id="msgs">
@@ -255,10 +391,11 @@ textarea{width:100%;background:none;border:none;outline:none;color:var(--brt);fo
   <div class="sidebar">
     <div><div class="sb-ttl">// المفتاح</div><button class="qb" onclick="changeKey()">🔑 تغيير المفتاح</button><button class="qb danger" onclick="deleteKey()">🗑️ حذف المفتاح</button></div>
     <div><div class="sb-ttl">// يومي</div><button class="qb" onclick="q('مرحبا!')">👋 تحية</button><button class="qb" onclick="q('كيف حالك؟')">😊 كيف حالك؟</button></div>
-    <div><div class="sb-ttl">// Linux</div><button class="qb" onclick="q('اشرح grep في Linux')">grep</button><button class="qb" onclick="q('اشرح chmod')">chmod</button><button class="qb" onclick="q('أساسيات Python')">Python</button></div>
+    <div><div class="sb-ttl">// Linux</div><button class="qb" onclick="q('اشرح grep في Linux')">grep</button><button class="qb" onclick="q('اشرح chmod')">chmod</button><button class="qb" onclick="q('أساسيات Python')">Python</button><button class="qb" onclick="q('كيف أستخدم git؟')">Git</button></div>
     <div><div class="sb-ttl">// أدوات</div><button class="qb" onclick="q('/pass 20')">/pass</button><button class="qb" onclick="q('/help')">/help</button><button class="qb" onclick="q('/clear')">/clear مسح</button></div>
   </div>
 </div>
+
 <script>
 let apiKey = localStorage.getItem('bilalx_groq_key') || '';
 let history = [];
@@ -321,6 +458,13 @@ function q(v) { document.getElementById('inp').value=v; send(); }
 document.getElementById('inp').addEventListener('keydown', e => { if(e.key==='Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
 if(apiKey) { document.getElementById('setup').style.display = 'none'; updateKeyStatus(true); }
 </script>
+
+<!-- footer SEO hidden keywords for better ranking -->
+<div style="display:none;" aria-hidden="true">
+<h1>BILAL_X - أفضل مساعد Linux والبرمجة بالعربية</h1>
+<h2>تعلم Linux والبرمجة بسهولة مع BILAL_X</h2>
+<p>BILAL_X هو مساعد تقني ذكي متخصص في Linux والبرمجة. يقدم حلولاً فورية لمشاكل Linux وأوامر الطرفية وبرمجة Python و Bash و Git وغيرها الكثير.</p>
+</div>
 </body>
 </html>"""
 
