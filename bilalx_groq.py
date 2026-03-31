@@ -9,7 +9,7 @@
 ╚══════════════════════════════════════════════════════════════╝
 """
 
-from flask import Flask, request, jsonify, render_template_string
+from flask import Flask, request, jsonify, render_template_string, send_from_directory
 from datetime import datetime
 import hashlib, secrets, string, base64, re, random
 import os
@@ -21,17 +21,18 @@ except ImportError:
     REQUESTS_OK = False
 
 app = Flask(__name__)
-from flask import send_from_directory
 
+# ============================================================
+# Google Verification - الملف المطلوب من جوجل
+# ============================================================
 @app.route('/google78ab5f00e22cd85c.html')
 def google_verification():
-    # يفترض أن الملف موجود في مجلد static
-    return send_from_directory('static', 'google78ab5f00e22cd85c.html')
-from flask import send_from_directory  # أضف هذا السطر أعلى الملف إذا لم يكن موجودًا
-
-@app.route('/google78ab5f00e22cd85c.html')
-def google_verification():
-    return send_from_directory('static', 'google78ab5f00e22cd85c.html')
+    """إرجاع ملف التحقق لجوجل - تأكد من وجود الملف في مجلد static"""
+    try:
+        return send_from_directory('static', 'google78ab5f00e22cd85c.html')
+    except:
+        # إذا لم يكن الملف موجوداً، نعرض رسالة خطأ
+        return "File not found. Please add google78ab5f00e22cd85c.html to static folder.", 404
 
 GROQ_MODEL = "llama-3.3-70b-versatile"
 GROQ_URL   = "https://api.groq.com/openai/v1/chat/completions"
@@ -42,15 +43,13 @@ SYSTEM_MSG = (
     "في المحادثة اليومية ترد بشكل إنساني — مش جاف."
 )
 
-
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 #  Flask Routes
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 
 @app.route('/')
 def index():
     return render_template_string(HTML)
-
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -111,10 +110,9 @@ def chat():
     except Exception as e:
         return jsonify({'error': str(e)[:80]})
 
-
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 #  أوامر محلية (بدون API)
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 
 def _local_command(msg: str) -> str | None:
     lower = msg.strip().lower()
@@ -145,21 +143,23 @@ def _local_command(msg: str) -> str | None:
         try:    return f"🔓 فك Base64:\n  {base64.b64decode(t).decode('utf-8')}"
         except: return "❌ نص Base64 غير صالح"
 
+    if lower == '/clear':
+        return "CLEAR_CONSOLE"
+
     if lower == '/help':
         return ("📚 الأوامر المحلية (بدون مفتاح):\n\n"
                 "/pass [طول]   كلمة مرور قوية\n"
                 "/hash [نص]    تشفير SHA/MD5\n"
                 "/encode [نص]  Base64\n"
-                "/decode [نص]  فك Base64")
-    return None
-def google_verification():
-  @app.route('/google78ab5f00e22cd85c.html')
-def google_verification():
-    return send_from_directory('static', 'google78ab5f00e22cd85c.html')
+                "/decode [نص]  فك Base64\n"
+                "/clear        مسح الشاشة\n"
+                "/help         عرض هذه المساعدة")
 
-# ══════════════════════════════════════════════════════════════
+    return None
+
+# ============================================================
 #  واجهة HTML — المفتاح يُخزن في localStorage فقط
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 
 HTML = """<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -315,10 +315,7 @@ textarea{width:100%;background:none;border:none;outline:none;color:var(--brt);fo
     <div class="msgs" id="msgs">
       <div class="msg bot">
         <div class="av">$_</div>
-        <div class="bbl">🐧 <b>أهلاً! أنا BILAL_X</b>
-
-مساعدك الذكي لـ Linux والبرمجة.
-اسألني أي شيء أو اكتب /help للأوامر 😊</div>
+        <div class="bbl">🐧 <b>أهلاً! أنا BILAL_X</b><br><br>مساعدك الذكي لـ Linux والبرمجة.<br>اسألني أي شيء أو اكتب /help للأوامر 😊</div>
       </div>
     </div>
     <div class="inp-area">
@@ -355,8 +352,9 @@ textarea{width:100%;background:none;border:none;outline:none;color:var(--brt);fo
     <div>
       <div class="sb-ttl">// أدوات</div>
       <button class="qb" onclick="q('/pass 20')">/pass كلمة مرور</button>
-      <button class="qb" onclick="q('/hash ')">/hash تشفير</button>
-      <button class="qb" onclick="q('/encode ')">/encode Base64</button>
+      <button class="qb" onclick="q('/hash test')">/hash تشفير</button>
+      <button class="qb" onclick="q('/encode مرحبا')">/encode Base64</button>
+      <button class="qb" onclick="q('/clear')">/clear مسح</button>
       <button class="qb" onclick="q('/help')">/help المساعدة</button>
     </div>
   </div>
@@ -467,9 +465,12 @@ const inpEl  = document.getElementById('inp');
 
 function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function fmt(t) {
-  return esc(t)
-    .replace(/```[\\w]*\\n?([\\s\\S]*?)```/g, '<pre>$1</pre>')
-    .replace(/`([^`]+)`/g, '<code style="font-family:monospace;background:#0d1117;padding:1px 5px;border-radius:3px;color:#39d353;font-size:12px;">$1</code>');
+  let escaped = esc(t);
+  // معالجة الكود المحاط بثلاثة علامات `
+  escaped = escaped.replace(/```([\\w]*)\\n?([\\s\\S]*?)```/g, '<pre><code>$2</code></pre>');
+  // معالجة الكود المحاط بعلامة واحدة `
+  escaped = escaped.replace(/`([^`]+)`/g, '<code style="font-family:monospace;background:#0d1117;padding:2px 6px;border-radius:3px;color:#39d353;font-size:12px;">$1</code>');
+  return escaped;
 }
 
 function addMsg(html, isUser, source) {
@@ -478,6 +479,8 @@ function addMsg(html, isUser, source) {
   let tag = '';
   if (!isUser && source === 'groq')
     tag = '<div style="margin-top:5px"><span class="src-tag src-groq">🤖 Groq AI</span></div>';
+  if (!isUser && source === 'local')
+    tag = '<div style="margin-top:5px"><span class="src-tag src-local">⚙️ أمر محلي</span></div>';
   d.innerHTML = `<div class="av">${isUser ? 'أنت' : '$_'}</div><div class="bbl">${html}${tag}</div>`;
   msgsEl.appendChild(d);
   msgsEl.scrollTop = msgsEl.scrollHeight;
@@ -532,6 +535,13 @@ async function send() {
       return;
     }
 
+    if (d.response === "CLEAR_CONSOLE") {
+      msgsEl.innerHTML = '';
+      addMsg('🧹 تم مسح الشاشة', false, 'local');
+      history = [];
+      return;
+    }
+
     if (d.response) {
       // حفظ في التاريخ للسياق
       history.push({role: 'user',      content: msg});
@@ -567,10 +577,9 @@ if (apiKey) {
 </body>
 </html>"""
 
-
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 #  نقطة الدخول
-# ══════════════════════════════════════════════════════════════
+# ============================================================
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=False, host='0.0.0.0', port=port)
