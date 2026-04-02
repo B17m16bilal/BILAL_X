@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BILAL_X v2 | مساعد Linux الذكي</title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XLJTKWYDFM"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','G-XLJTKWYDFM');
+</script>
+
+<meta name="description" content="BILAL_X: مساعد Linux والبرمجة الذكي المجاني بالعربية. بحث ويب + AI متقدم.">
+<meta name="keywords" content="مساعد Linux عربي, Groq AI, مساعد برمجة, Python Bash Git, BILAL_X">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bilal-x.onrender.com/">
+<meta property="og:title" content="BILAL_X v2 | مساعد Linux الذكي">
+<meta property="og:description" content="مساعد Linux والبرمجة الذكي المجاني بالعربية مع بحث الويب.">
+<meta property="og:url" content="https://bilal-x.onrender.com/">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522095429190990" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- SETUP WIZARD -->
+<div class="setup" id="setup">
+  <div class="setup-card">
+    <div class="setup-brand">
+      <div class="brand-glow"></div>
+      <span class="brand-icon">🤖</span>
+      <span class="brand-name">BILAL_X</span>
+      <span class="brand-ver">v2.0</span>
+    </div>
+
+    <div class="wizard-steps">
+      <div class="ws" id="ws1"><div class="ws-dot active"></div><span>أنشئ حساب</span></div>
+      <div class="ws-line" id="wsl1"></div>
+      <div class="ws" id="ws2"><div class="ws-dot"></div><span>API Key</span></div>
+      <div class="ws-line" id="wsl2"></div>
+      <div class="ws" id="ws3"><div class="ws-dot"></div><span>ابدأ</span></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="wz-pane" id="wz1">
+      <div class="wz-title">أهلاً في BILAL_X <span class="v2-badge">v2</span></div>
+      <div class="wz-sub">نحتاج مفتاح Groq مجاني — دقيقة واحدة فقط 🚀</div>
+      <div class="feature-pills">
+        <span class="pill">🔍 بحث ويب</span>
+        <span class="pill">🧠 تفكير عميق</span>
+        <span class="pill">💬 محادثات محفوظة</span>
+        <span class="pill">⚡ مجاني 100%</span>
+      </div>
+      <div class="info-box">
+        <div class="ib-icon">🌐</div>
+        <div>سجّل مجاناً في Groq بحساب Google في ثوانٍ</div>
+      </div>
+      <a href="https://console.groq.com" target="_blank" class="btn-primary" onclick="setTimeout(()=>goStep(2),1500)">
+        افتح Groq وسجّل الآن ←
+      </a>
+      <button class="btn-ghost" onclick="goStep(2)">لديّ حساب بالفعل ←</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="wz-pane hidden" id="wz2">
+      <div class="wz-title">أنشئ مفتاحك</div>
+      <div class="wz-sub">داخل لوحة Groq:</div>
+      <div class="steps-list">
+        <div class="sl-item"><span class="sl-n">١</span><span>اضغط <b class="hl">API Keys</b> من القائمة</span></div>
+        <div class="sl-item"><span class="sl-n">٢</span><span>اضغط <b class="hl">Create API Key</b></span></div>
+        <div class="sl-item"><span class="sl-n">٣</span><span>انسخ المفتاح — يبدأ بـ <code class="mono-hl">gsk_</code></span></div>
+      </div>
+      <a href="https://console.groq.com/keys" target="_blank" class="btn-outline">🔗 صفحة API Keys ←</a>
+      <button class="btn-primary" onclick="goStep(3)" style="margin-top:10px">انسخت المفتاح ←</button>
+      <button class="btn-ghost" onclick="goStep(1)">→ رجوع</button>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="wz-pane hidden" id="wz3">
+      <div class="wz-title">الخطوة الأخيرة ✅</div>
+      <div class="wz-sub">الصق مفتاحك للبدء فوراً</div>
+      <div class="key-field">
+        <input id="keyInput" type="password" placeholder="gsk_xxxxxxxxxxxxxxxx" dir="ltr" autocomplete="off">
+        <button class="eye-btn" onclick="toggleEye()" title="إظهار/إخفاء">👁</button>
+      </div>
+      <div class="security-note">
+        <span class="lock-icon">🔒</span>
+        المفتاح يُخزن في جلسة المتصفح فقط ولا يُرسل لأي خادم خارجي
+      </div>
+      <button class="btn-primary" onclick="saveKey()">ابدأ المحادثة ←</button>
+      <div class="err-msg" id="errMsg"></div>
+      <button class="btn-ghost" onclick="goStep(2)">→ رجوع</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="traffic-lights">
+      <div class="tl red"></div>
+      <div class="tl yellow"></div>
+      <div class="tl green"></div>
+    </div>
+    <div class="hdr-title">bilal@linux:~ — <b>BILAL_X</b> <span class="ver-tag">v2.0</span></div>
+  </div>
+  <div class="hdr-center">
+    <div class="mode-switcher">
+      <button class="mode-btn active" id="modeNormal" onclick="setMode('normal')" title="محادثة عادية">💬 عادي</button>
+      <button class="mode-btn" id="modeThink" onclick="setMode('think')" title="تفكير عميق">🧠 تفكير</button>
+      <button class="mode-btn" id="modeSearch" onclick="setMode('search')" title="بحث الويب">🔍 بحث</button>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <button class="icon-btn" onclick="toggleHistory()" title="سجل المحادثات">📋</button>
+    <button class="icon-btn" onclick="exportChat()" title="تصدير المحادثة">⬇️</button>
+    <div class="key-pill" onclick="changeKey()">
+      <div class="key-dot" id="keyDot"></div>
+      <span id="keyLabel">لا يوجد مفتاح</span>
+    </div>
+  </div>
+</header>
+
+<!-- AD TOP -->
+<div class="ad-strip">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7522095429190990"
+       data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- HISTORY PANEL -->
+  <div class="history-panel hidden" id="historyPanel">
+    <div class="hp-head">
+      <span class="panel-title">// المحادثات</span>
+      <button class="close-btn" onclick="toggleHistory()">✕</button>
+    </div>
+    <button class="new-chat-btn" onclick="newChat()">＋ محادثة جديدة</button>
+    <div class="hp-search">
+      <input type="text" placeholder="🔍 بحث في المحادثات..." id="chatSearch" oninput="filterChats(this.value)">
+    </div>
+    <div class="hp-list" id="hpList">
+      <div class="hp-empty">لا توجد محادثات بعد</div>
+    </div>
+    <div class="hp-footer">
+      <span class="chat-count" id="chatCount">0 محادثة</span>
+      <button class="clear-all" onclick="clearAllChats()">🗑️ حذف الكل</button>
+    </div>
+  </div>
+
+  <!-- CHAT AREA -->
+  <div class="chat-area">
+    <div class="msgs" id="msgs">
+      <div class="msg bot welcome-msg">
+        <div class="av bot-av">$_</div>
+        <div class="bbl">
+          <div class="welcome-header">
+            <span class="welcome-emoji">🐧</span>
+            <span>أهلاً! أنا <b>BILAL_X v2</b></span>
+          </div>
+          <div class="welcome-features">
+            <div class="wf-item">💬 <span>اسألني عن Linux والبرمجة</span></div>
+            <div class="wf-item">🔍 <span>ابحث في الويب بـ <code>/search</code></span></div>
+            <div class="wf-item">🧠 <span>فعّل وضع التفكير للأسئلة المعقدة</span></div>
+            <div class="wf-item">🔐 <span>أدوات: <code>/pass</code> <code>/hash</code> <code>/ip</code></span></div>
+          </div>
+          <div class="wf-hint">اكتب <code>/help</code> لعرض جميع الأوامر</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-zone">
+      <div class="mode-indicator" id="modeIndicator">
+        <span id="modeText">💬 وضع المحادثة</span>
+      </div>
+      <div class="input-row">
+        <div class="input-wrap">
+          <span class="prompt-sym">$</span>
+          <textarea id="inp" placeholder="اكتب سؤالك... (Enter للإرسال، Shift+Enter للسطر الجديد)" rows="1"></textarea>
+          <button class="search-btn" onclick="toggleSearchBar()" title="بحث سريع">🔍</button>
+        </div>
+        <button class="send-btn" onclick="send()" id="sendBtn">
+          <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+        </button>
+      </div>
+      <!-- Quick Search Bar -->
+      <div class="quick-search hidden" id="quickSearch">
+        <input type="text" id="searchInput" placeholder="🔍 ابحث في الويب..." onkeydown="if(e.key==='Enter')doSearch()">
+        <button onclick="doSearch()">بحث</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-section">
+      <div class="sb-title">// المفتاح</div>
+      <button class="sb-btn" onclick="changeKey()">🔑 تغيير المفتاح</button>
+      <button class="sb-btn danger" onclick="deleteKey()">🗑️ حذف المفتاح</button>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">// بحث سريع</div>
+      <button class="sb-btn search" onclick="quickSearch('أحدث توزيعات Linux 2025')">🐧 توزيعات Linux</button>
+      <button class="sb-btn search" onclick="quickSearch('Python best practices 2025')">🐍 أفضل ممارسات Python</button>
+      <button class="sb-btn search" onclick="quickSearch('Docker tutorial beginners')">🐳 Docker مبتدئين</button>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">// Linux شائع</div>
+      <button class="sb-btn" onclick="q('اشرح أمر grep مع أمثلة عملية')">grep</button>
+      <button class="sb-btn" onclick="q('اشرح chmod وchown بالتفصيل')">chmod/chown</button>
+      <button class="sb-btn" onclick="q('أوامر awk الأساسية مع أمثلة')">awk</button>
+      <button class="sb-btn" onclick="q('كيف أستخدم systemctl؟')">systemctl</button>
+      <button class="sb-btn" onclick="q('شرح ssh وكيفية الاتصال الآمن')">SSH</button>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">// أدوات</div>
+      <button class="sb-btn tool" onclick="q('/pass 24')">/pass 24</button>
+      <button class="sb-btn tool" onclick="q('/ip')">/ip</button>
+      <button class="sb-btn tool" onclick="q('/help')">/help</button>
+      <button class="sb-btn tool" onclick="q('/hash test123')">/hash</button>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-title">// إعلان</div>
+      <ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-7522095429190990"
+           data-ad-slot="9876543210" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    </div>
+  </div>
+</div>
+
+<!-- AD BOTTOM -->
+<div class="ad-strip">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7522095429190990"
+       data-ad-slot="1122334455" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+
+<!-- Hidden SEO -->
+<div hidden aria-hidden="true">
+  <h1>BILAL_X - مساعد Linux والبرمجة الذكي بالعربية</h1>
+  <p>BILAL_X هو مساعد تقني ذكي متخصص في Linux والبرمجة مع بحث ويب مدمج.</p>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
