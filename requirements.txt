@@ -1,4 +1,4 @@
 flask
 flask-limiter
 requests
-flask-cors
+gunicorn

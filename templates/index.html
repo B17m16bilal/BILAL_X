@@ -3,255 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BILAL_X v2 | مساعد Linux الذكي</title>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XLJTKWYDFM"></script>
-<script>
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());
-  gtag('config','G-XLJTKWYDFM');
-</script>
-
-<meta name="description" content="BILAL_X: مساعد Linux والبرمجة الذكي المجاني بالعربية. بحث ويب + AI متقدم.">
-<meta name="keywords" content="مساعد Linux عربي, Groq AI, مساعد برمجة, Python Bash Git, BILAL_X">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://bilal-x.onrender.com/">
-<meta property="og:title" content="BILAL_X v2 | مساعد Linux الذكي">
-<meta property="og:description" content="مساعد Linux والبرمجة الذكي المجاني بالعربية مع بحث الويب.">
-<meta property="og:url" content="https://bilal-x.onrender.com/">
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7522095429190990" crossorigin="anonymous"></script>
-
+<title>BILAL_X</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
-<!-- SETUP WIZARD -->
-<div class="setup" id="setup">
-  <div class="setup-card">
-    <div class="setup-brand">
-      <div class="brand-glow"></div>
-      <span class="brand-icon">🤖</span>
-      <span class="brand-name">BILAL_X</span>
-      <span class="brand-ver">v2.0</span>
-    </div>
-
-    <div class="wizard-steps">
-      <div class="ws" id="ws1"><div class="ws-dot active"></div><span>أنشئ حساب</span></div>
-      <div class="ws-line" id="wsl1"></div>
-      <div class="ws" id="ws2"><div class="ws-dot"></div><span>API Key</span></div>
-      <div class="ws-line" id="wsl2"></div>
-      <div class="ws" id="ws3"><div class="ws-dot"></div><span>ابدأ</span></div>
-    </div>
-
-    <!-- Step 1 -->
-    <div class="wz-pane" id="wz1">
-      <div class="wz-title">أهلاً في BILAL_X <span class="v2-badge">v2</span></div>
-      <div class="wz-sub">نحتاج مفتاح Groq مجاني — دقيقة واحدة فقط 🚀</div>
-      <div class="feature-pills">
-        <span class="pill">🔍 بحث ويب</span>
-        <span class="pill">🧠 تفكير عميق</span>
-        <span class="pill">💬 محادثات محفوظة</span>
-        <span class="pill">⚡ مجاني 100%</span>
-      </div>
-      <div class="info-box">
-        <div class="ib-icon">🌐</div>
-        <div>سجّل مجاناً في Groq بحساب Google في ثوانٍ</div>
-      </div>
-      <a href="https://console.groq.com" target="_blank" class="btn-primary" onclick="setTimeout(()=>goStep(2),1500)">
-        افتح Groq وسجّل الآن ←
-      </a>
-      <button class="btn-ghost" onclick="goStep(2)">لديّ حساب بالفعل ←</button>
-    </div>
-
-    <!-- Step 2 -->
-    <div class="wz-pane hidden" id="wz2">
-      <div class="wz-title">أنشئ مفتاحك</div>
-      <div class="wz-sub">داخل لوحة Groq:</div>
-      <div class="steps-list">
-        <div class="sl-item"><span class="sl-n">١</span><span>اضغط <b class="hl">API Keys</b> من القائمة</span></div>
-        <div class="sl-item"><span class="sl-n">٢</span><span>اضغط <b class="hl">Create API Key</b></span></div>
-        <div class="sl-item"><span class="sl-n">٣</span><span>انسخ المفتاح — يبدأ بـ <code class="mono-hl">gsk_</code></span></div>
-      </div>
-      <a href="https://console.groq.com/keys" target="_blank" class="btn-outline">🔗 صفحة API Keys ←</a>
-      <button class="btn-primary" onclick="goStep(3)" style="margin-top:10px">انسخت المفتاح ←</button>
-      <button class="btn-ghost" onclick="goStep(1)">→ رجوع</button>
-    </div>
-
-    <!-- Step 3 -->
-    <div class="wz-pane hidden" id="wz3">
-      <div class="wz-title">الخطوة الأخيرة ✅</div>
-      <div class="wz-sub">الصق مفتاحك للبدء فوراً</div>
-      <div class="key-field">
-        <input id="keyInput" type="password" placeholder="gsk_xxxxxxxxxxxxxxxx" dir="ltr" autocomplete="off">
-        <button class="eye-btn" onclick="toggleEye()" title="إظهار/إخفاء">👁</button>
-      </div>
-      <div class="security-note">
-        <span class="lock-icon">🔒</span>
-        المفتاح يُخزن في جلسة المتصفح فقط ولا يُرسل لأي خادم خارجي
-      </div>
-      <button class="btn-primary" onclick="saveKey()">ابدأ المحادثة ←</button>
-      <div class="err-msg" id="errMsg"></div>
-      <button class="btn-ghost" onclick="goStep(2)">→ رجوع</button>
-    </div>
-  </div>
-</div>
-
-<!-- HEADER -->
-<header class="hdr">
-  <div class="hdr-left">
-    <div class="traffic-lights">
-      <div class="tl red"></div>
-      <div class="tl yellow"></div>
-      <div class="tl green"></div>
-    </div>
-    <div class="hdr-title">bilal@linux:~ — <b>BILAL_X</b> <span class="ver-tag">v2.0</span></div>
-  </div>
-  <div class="hdr-center">
-    <div class="mode-switcher">
-      <button class="mode-btn active" id="modeNormal" onclick="setMode('normal')" title="محادثة عادية">💬 عادي</button>
-      <button class="mode-btn" id="modeThink" onclick="setMode('think')" title="تفكير عميق">🧠 تفكير</button>
-      <button class="mode-btn" id="modeSearch" onclick="setMode('search')" title="بحث الويب">🔍 بحث</button>
-    </div>
-  </div>
-  <div class="hdr-right">
-    <button class="icon-btn" onclick="toggleHistory()" title="سجل المحادثات">📋</button>
-    <button class="icon-btn" onclick="exportChat()" title="تصدير المحادثة">⬇️</button>
-    <div class="key-pill" onclick="changeKey()">
-      <div class="key-dot" id="keyDot"></div>
-      <span id="keyLabel">لا يوجد مفتاح</span>
-    </div>
-  </div>
-</header>
-
-<!-- AD TOP -->
-<div class="ad-strip">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7522095429190990"
-       data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</div>
-
-<!-- MAIN LAYOUT -->
-<div class="layout">
-
-  <!-- HISTORY PANEL -->
-  <div class="history-panel hidden" id="historyPanel">
-    <div class="hp-head">
-      <span class="panel-title">// المحادثات</span>
-      <button class="close-btn" onclick="toggleHistory()">✕</button>
-    </div>
-    <button class="new-chat-btn" onclick="newChat()">＋ محادثة جديدة</button>
-    <div class="hp-search">
-      <input type="text" placeholder="🔍 بحث في المحادثات..." id="chatSearch" oninput="filterChats(this.value)">
-    </div>
-    <div class="hp-list" id="hpList">
-      <div class="hp-empty">لا توجد محادثات بعد</div>
-    </div>
-    <div class="hp-footer">
-      <span class="chat-count" id="chatCount">0 محادثة</span>
-      <button class="clear-all" onclick="clearAllChats()">🗑️ حذف الكل</button>
-    </div>
+<!-- ══════════════════════════════════════════════
+     SCREEN 1 — SPLASH / ABOUT THE DEVELOPER
+══════════════════════════════════════════════ -->
+<div id="screen-about" class="screen active">
+  <div class="splash-bg">
+    <div class="grid-lines"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
   </div>
 
-  <!-- CHAT AREA -->
-  <div class="chat-area">
-    <div class="msgs" id="msgs">
-      <div class="msg bot welcome-msg">
-        <div class="av bot-av">$_</div>
-        <div class="bbl">
-          <div class="welcome-header">
-            <span class="welcome-emoji">🐧</span>
-            <span>أهلاً! أنا <b>BILAL_X v2</b></span>
-          </div>
-          <div class="welcome-features">
-            <div class="wf-item">💬 <span>اسألني عن Linux والبرمجة</span></div>
-            <div class="wf-item">🔍 <span>ابحث في الويب بـ <code>/search</code></span></div>
-            <div class="wf-item">🧠 <span>فعّل وضع التفكير للأسئلة المعقدة</span></div>
-            <div class="wf-item">🔐 <span>أدوات: <code>/pass</code> <code>/hash</code> <code>/ip</code></span></div>
-          </div>
-          <div class="wf-hint">اكتب <code>/help</code> لعرض جميع الأوامر</div>
+  <div class="splash-content">
+    <div class="logo-mark">
+      <span class="logo-bracket">[</span>
+      <span class="logo-text">BX</span>
+      <span class="logo-bracket">]</span>
+    </div>
+
+    <div class="splash-title">
+      <h1>BILAL_X</h1>
+      <p class="splash-version">v3.0 — مساعد Linux الذكي</p>
+    </div>
+
+    <div class="developer-card">
+      <div class="dev-avatar">MB</div>
+      <div class="dev-info">
+        <p class="dev-name">Meriane Bilal</p>
+        <p class="dev-meta">16 سنة · مطوّر جزائري 🇩🇿</p>
+        <p class="dev-bio">
+          شغفي بـ Linux والبرمجة خلاني أبني هذا المساعد —
+          أداة مجانية تساعد المطوّرين العرب على تعلّم وفهم
+          Linux والبرمجة بلغتهم.
+        </p>
+        <div class="dev-tags">
+          <span>Linux</span>
+          <span>Python</span>
+          <span>Bash</span>
+          <span>DevOps</span>
         </div>
       </div>
     </div>
 
-    <!-- INPUT -->
-    <div class="input-zone">
-      <div class="mode-indicator" id="modeIndicator">
-        <span id="modeText">💬 وضع المحادثة</span>
+    <button class="btn-primary" onclick="showTerms()">
+      <span>المتابعة</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN 2 — TERMS & CONDITIONS
+══════════════════════════════════════════════ -->
+<div id="screen-terms" class="screen">
+  <div class="terms-container">
+    <div class="terms-header">
+      <div class="terms-icon">📋</div>
+      <h2>الشروط والأحكام</h2>
+      <p>اقرأ بعناية قبل الاستخدام</p>
+    </div>
+
+    <div class="terms-body" id="terms-scroll">
+      <div class="terms-section">
+        <h3>١. قبول الشروط</h3>
+        <p>باستخدامك لـ BILAL_X، فأنت توافق على هذه الشروط كاملةً. إذا كنت لا توافق، يرجى عدم استخدام الخدمة.</p>
       </div>
-      <div class="input-row">
-        <div class="input-wrap">
-          <span class="prompt-sym">$</span>
-          <textarea id="inp" placeholder="اكتب سؤالك... (Enter للإرسال، Shift+Enter للسطر الجديد)" rows="1"></textarea>
-          <button class="search-btn" onclick="toggleSearchBar()" title="بحث سريع">🔍</button>
-        </div>
-        <button class="send-btn" onclick="send()" id="sendBtn">
-          <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+
+      <div class="terms-section">
+        <h3>٢. الاستخدام المقبول</h3>
+        <p>BILAL_X مصمّم للأغراض التعليمية والتقنية فقط. يُحظر استخدامه في:</p>
+        <ul>
+          <li>أي نشاط غير قانوني أو ضار</li>
+          <li>اختراق الأنظمة أو الشبكات دون إذن</li>
+          <li>نشر محتوى مسيء أو مضلل</li>
+          <li>انتهاك خصوصية الآخرين</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h3>٣. مفتاح Groq API</h3>
+        <p>المفتاح الذي تدخله يُستخدم فقط لإرسال طلباتك لخوادم Groq. لا يُخزَّن على أي خادم خارجي. أنت مسؤول عن سرية مفتاحك.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>٤. دقة المعلومات</h3>
+        <p>BILAL_X مساعد ذكاء اصطناعي، وقد يقع في أخطاء. تحقّق دائماً من المعلومات الحساسة من مصادر موثوقة قبل التطبيق.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>٥. الخصوصية</h3>
+        <p>المحادثات تُحفظ محلياً في متصفحك فقط (IndexedDB). لا نجمع أي بيانات شخصية.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>٦. إخلاء المسؤولية</h3>
+        <p>المطوّر غير مسؤول عن أي ضرر ناتج عن الاستخدام الخاطئ للأداة. الخدمة تُقدَّم "كما هي" دون ضمانات.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>٧. التعديلات</h3>
+        <p>نحتفظ بحق تعديل هذه الشروط في أي وقت. الاستمرار في الاستخدام يعني الموافقة على التعديلات.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>٨. التواصل</h3>
+        <p>للاستفسار أو الإبلاغ عن مشكلة: تواصل مع المطوّر عبر GitHub.</p>
+      </div>
+    </div>
+
+    <div class="terms-footer">
+      <div class="scroll-hint" id="scroll-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        اقرأ حتى النهاية للمتابعة
+      </div>
+      <div class="terms-actions" id="terms-actions" style="display:none">
+        <label class="checkbox-label">
+          <input type="checkbox" id="terms-check" onchange="toggleAccept()">
+          <span class="checkbox-custom"></span>
+          أوافق على الشروط والأحكام
+        </label>
+        <button class="btn-primary" id="btn-accept" disabled onclick="showSetup()">
+          <span>ابدأ الآن</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
-      <!-- Quick Search Bar -->
-      <div class="quick-search hidden" id="quickSearch">
-        <input type="text" id="searchInput" placeholder="🔍 ابحث في الويب..." onkeydown="if(e.key==='Enter')doSearch()">
-        <button onclick="doSearch()">بحث</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN 3 — API KEY SETUP
+══════════════════════════════════════════════ -->
+<div id="screen-setup" class="screen">
+  <div class="setup-container">
+    <div class="setup-header">
+      <div class="logo-small">[BX]</div>
+      <h2>أدخل مفتاح Groq</h2>
+      <p>مجاني تماماً — دقيقة واحدة للحصول عليه</p>
+    </div>
+
+    <div class="setup-steps">
+      <a href="https://console.groq.com" target="_blank" class="step-link">
+        <div class="step-num">١</div>
+        <div class="step-text">
+          <strong>سجّل في Groq</strong>
+          <span>console.groq.com ← مجاني بحساب Google</span>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
+      <a href="https://console.groq.com/keys" target="_blank" class="step-link">
+        <div class="step-num">٢</div>
+        <div class="step-text">
+          <strong>أنشئ مفتاحاً</strong>
+          <span>API Keys → Create API Key</span>
+        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
+    </div>
+
+    <div class="key-input-wrap">
+      <input type="password" id="api-key-input" class="key-input"
+             placeholder="gsk_xxxxxxxxxxxxxxxxxxxxxxxx"
+             oninput="validateKey(this.value)"
+             onkeydown="if(event.key==='Enter') submitKey()">
+      <button class="eye-btn" onclick="toggleKeyVisibility()" title="إظهار/إخفاء">
+        <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <p class="key-error" id="key-error"></p>
+    <p class="key-hint">🔒 المفتاح يُحفظ في جلسة المتصفح فقط</p>
+
+    <button class="btn-primary" id="btn-start" disabled onclick="submitKey()">
+      <span>ادخل BILAL_X</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN 4 — MAIN CHAT
+══════════════════════════════════════════════ -->
+<div id="screen-chat" class="screen">
+
+  <!-- Header -->
+  <header class="chat-header">
+    <div class="header-logo">[BX]</div>
+    <div class="header-center">
+      <span class="header-name">BILAL_X</span>
+      <span class="status-dot" id="status-dot"></span>
+    </div>
+    <button class="menu-btn" id="menu-btn" onclick="toggleMenu()" title="الإعدادات" aria-label="القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Dropdown Menu -->
+  <div class="dropdown-menu" id="dropdown-menu">
+    <div class="menu-section">
+      <p class="menu-label">وضع الذكاء</p>
+      <div class="mode-options">
+        <button class="mode-btn active" data-mode="normal" onclick="setMode('normal', this)">⚡ سريع</button>
+        <button class="mode-btn" data-mode="think" onclick="setMode('think', this)">🧠 تفكير</button>
+        <button class="mode-btn" data-mode="search" onclick="setMode('search', this)">🔍 بحث</button>
+      </div>
+    </div>
+    <div class="menu-divider"></div>
+    <button class="menu-item" onclick="clearChat()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+      مسح المحادثة
+    </button>
+    <button class="menu-item" onclick="exportChat()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      تصدير المحادثة
+    </button>
+    <div class="menu-divider"></div>
+    <button class="menu-item" onclick="changeKey()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      تغيير المفتاح
+    </button>
+    <button class="menu-item" onclick="showAboutPopup()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      عن المطوّر
+    </button>
+  </div>
+
+  <!-- Messages -->
+  <div class="messages" id="messages">
+    <div class="welcome-msg" id="welcome-msg">
+      <div class="welcome-logo">[BX]</div>
+      <h3>أهلاً، كيف أقدر أساعدك؟</h3>
+      <p>اسألني عن Linux، Bash، Python، Docker، الشبكات، أو أي شيء تقني</p>
+      <div class="quick-prompts">
+        <button onclick="quickPrompt('اشرح لي الفرق بين chmod و chown في Linux')">chmod vs chown</button>
+        <button onclick="quickPrompt('كيف أكتب Bash script يراقب استهلاك الـ CPU؟')">CPU monitor script</button>
+        <button onclick="quickPrompt('ما أفضل طريقة لتأمين سيرفر Ubuntu؟')">تأمين سيرفر</button>
+        <button onclick="quickPrompt('/help')">الأوامر المتاحة</button>
       </div>
     </div>
   </div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sb-section">
-      <div class="sb-title">// المفتاح</div>
-      <button class="sb-btn" onclick="changeKey()">🔑 تغيير المفتاح</button>
-      <button class="sb-btn danger" onclick="deleteKey()">🗑️ حذف المفتاح</button>
-    </div>
+  <!-- Mode indicator -->
+  <div class="mode-indicator" id="mode-indicator">
+    <span id="mode-label">⚡ سريع</span>
+  </div>
 
-    <div class="sb-section">
-      <div class="sb-title">// بحث سريع</div>
-      <button class="sb-btn search" onclick="quickSearch('أحدث توزيعات Linux 2025')">🐧 توزيعات Linux</button>
-      <button class="sb-btn search" onclick="quickSearch('Python best practices 2025')">🐍 أفضل ممارسات Python</button>
-      <button class="sb-btn search" onclick="quickSearch('Docker tutorial beginners')">🐳 Docker مبتدئين</button>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-title">// Linux شائع</div>
-      <button class="sb-btn" onclick="q('اشرح أمر grep مع أمثلة عملية')">grep</button>
-      <button class="sb-btn" onclick="q('اشرح chmod وchown بالتفصيل')">chmod/chown</button>
-      <button class="sb-btn" onclick="q('أوامر awk الأساسية مع أمثلة')">awk</button>
-      <button class="sb-btn" onclick="q('كيف أستخدم systemctl؟')">systemctl</button>
-      <button class="sb-btn" onclick="q('شرح ssh وكيفية الاتصال الآمن')">SSH</button>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-title">// أدوات</div>
-      <button class="sb-btn tool" onclick="q('/pass 24')">/pass 24</button>
-      <button class="sb-btn tool" onclick="q('/ip')">/ip</button>
-      <button class="sb-btn tool" onclick="q('/help')">/help</button>
-      <button class="sb-btn tool" onclick="q('/hash test123')">/hash</button>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-title">// إعلان</div>
-      <ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-7522095429190990"
-           data-ad-slot="9876543210" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  <!-- Input Bar -->
+  <div class="input-area">
+    <div class="input-bar">
+      <textarea id="msg-input"
+                placeholder="اسأل عن Linux، Bash، Python..."
+                rows="1"
+                onkeydown="handleKey(event)"
+                oninput="autoResize(this)"></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()" title="إرسال">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
     </div>
   </div>
 </div>
 
-<!-- AD BOTTOM -->
-<div class="ad-strip">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7522095429190990"
-       data-ad-slot="1122334455" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-</div>
-
-<!-- Hidden SEO -->
-<div hidden aria-hidden="true">
-  <h1>BILAL_X - مساعد Linux والبرمجة الذكي بالعربية</h1>
-  <p>BILAL_X هو مساعد تقني ذكي متخصص في Linux والبرمجة مع بحث ويب مدمج.</p>
+<!-- ══════════════════════════════════════════════
+     ABOUT POPUP (from chat)
+══════════════════════════════════════════════ -->
+<div class="overlay" id="about-overlay" onclick="closeAboutPopup()">
+  <div class="popup" onclick="event.stopPropagation()">
+    <button class="popup-close" onclick="closeAboutPopup()">✕</button>
+    <div class="popup-logo">[BX]</div>
+    <h3>BILAL_X v3.0</h3>
+    <div class="popup-dev">
+      <div class="dev-avatar small">MB</div>
+      <div>
+        <strong>Meriane Bilal</strong>
+        <p>16 سنة · 🇩🇿 الجزائر</p>
+      </div>
+    </div>
+    <p class="popup-bio">مطوّر شغوف بـ Linux والبرمجة. بنيت BILAL_X لأساعد المجتمع التقني العربي.</p>
+    <div class="popup-tags">
+      <span>Linux</span><span>Python</span><span>Bash</span><span>DevOps</span><span>Web Dev</span>
+    </div>
+    <div class="popup-version">BILAL_X · مشروع مفتوح المصدر · 2024</div>
+  </div>
 </div>
 
 <script src="/static/js/app.js"></script>

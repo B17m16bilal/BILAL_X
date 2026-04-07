@@ -1,14 +1,13 @@
 """
 ╔══════════════════════════════════════════════════════════════╗
-║       BILAL_X v2.0 — مساعد Linux الذكي                      ║
-║       نسخة متطورة: بحث ويب + نماذج أذكى + أمان محسّن       ║
+║       BILAL_X v3.0 — مساعد Linux الذكي                      ║
+║       by: Meriane Bilal | عمر 16 سنة 🇩🇿                    ║
 ╚══════════════════════════════════════════════════════════════╝
 """
 
 from flask import Flask, request, jsonify, render_template
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from datetime import datetime
 import os, re, json, time, hashlib, secrets, string, base64
 
 try:
@@ -40,6 +39,7 @@ GROQ_URL         = "https://api.groq.com/openai/v1/chat/completions"
 DDG_URL          = "https://api.duckduckgo.com/"
 
 SYSTEM_MSG = """أنت BILAL_X — مساعد تقني ذكي متخصص في Linux والبرمجة.
+صنعك: Meriane Bilal، مطوّر جزائري عمره 16 سنة.
 
 🎯 تخصصاتك: Linux، Python، Bash، Git، Docker، الشبكات، أمان الأنظمة، DevOps.
 
@@ -48,7 +48,7 @@ SYSTEM_MSG = """أنت BILAL_X — مساعد تقني ذكي متخصص في Li
 - شخصيتك: ودود، صريح، مشجع، دقيق تقنياً
 - عند شرح أوامر: دائماً ضع مثالاً عملياً بين ```
 - للكود: استخدم markdown للتنسيق
-- تحدث بشكل إنساني طبيعي، مش جاف
+- تحدث بشكل إنساني طبيعي
 - اشرح "لماذا" وليس فقط "كيف"
 """
 
@@ -69,7 +69,7 @@ def search_web(query, max_results=5):
     try:
         params = {'q': query, 'format': 'json', 'no_html': '1', 'skip_disambig': '1'}
         resp = req_lib.get(DDG_URL, params=params, timeout=8,
-                           headers={'User-Agent': 'BILAL_X/2.0'})
+                           headers={'User-Agent': 'BILAL_X/3.0'})
         if resp.status_code != 200:
             return {"ok": False, "error": "search_failed"}
         data = resp.json()
@@ -136,6 +136,15 @@ def handle_ip(args):
 
 def handle_clear(args): return "CLEAR_CONSOLE"
 
+def handle_about(args):
+    return ("👨‍💻 عن المطوّر:\n\n"
+            "الاسم: Meriane Bilal\n"
+            "العمر: 16 سنة\n"
+            "الجنسية: 🇩🇿 جزائري\n"
+            "التخصص: Linux، Python، Web Dev\n\n"
+            "BILAL_X مشروع شخصي مفتوح المصدر\n"
+            "لمساعدة المستخدمين العرب في Linux والبرمجة 🐧")
+
 def handle_help(args):
     return ("📚 الأوامر المتاحة:\n\n"
             "═══ أدوات ═══\n"
@@ -143,17 +152,18 @@ def handle_help(args):
             "/hash [نص]     تشفير SHA/MD5\n"
             "/encode [نص]   Base64\n"
             "/decode [نص]   فك Base64\n"
-            "/ip [عنوان]    معلومات IP\n"
-            "/search [بحث]  بحث الويب 🔍\n\n"
+            "/ip [عنوان]    معلومات IP\n\n"
             "═══ AI ═══\n"
             "/think [سؤال]  وضع التفكير العميق 🧠\n"
-            "/clear         مسح الشاشة\n"
+            "/about         عن المطوّر\n"
+            "/clear         مسح المحادثة\n"
             "/help          هذه المساعدة")
 
 COMMANDS = {
     "/pass": handle_pass, "/hash": handle_hash,
     "/encode": handle_encode, "/decode": handle_decode,
-    "/ip": handle_ip, "/clear": handle_clear, "/help": handle_help,
+    "/ip": handle_ip, "/clear": handle_clear,
+    "/help": handle_help, "/about": handle_about,
 }
 
 def _local_command(msg):
@@ -228,12 +238,6 @@ def chat():
     if local:
         return jsonify({'response': local, 'source': 'local'})
 
-    if message.lower().startswith('/search '):
-        query = message[8:].strip()
-        if not query: return jsonify({'response': '❌ اكتب: /search [موضوع]', 'source': 'local'})
-        result = search_web(query, max_results=6)
-        return jsonify({'response': 'SEARCH_RESULTS', 'source': 'search', 'search_data': result})
-
     valid, key_error = validate_api_key(api_key)
     if not valid: return jsonify({'error': key_error})
 
@@ -241,7 +245,7 @@ def chat():
     search_context = ""
     search_data = None
 
-    if classification['needs_search']:
+    if classification['needs_search'] or mode == 'search':
         sr = search_web(message, max_results=3)
         if sr['ok'] and sr.get('results'):
             search_data = sr
@@ -266,31 +270,9 @@ def chat():
 
     return jsonify({'error': result["error"]})
 
-@app.route('/search', methods=['POST'])
-@limiter.limit("20 per minute")
-def web_search_route():
-    data = request.get_json(force=True, silent=True)
-    if not data: return jsonify({'error': 'invalid_json'}), 400
-    query = sanitize_input(data.get('query', ''))
-    if not query: return jsonify({'error': 'empty_query'}), 400
-    return jsonify(search_web(query, max_results=6))
-
 @app.route('/robots.txt')
 def robots():
-    return ("User-agent: *\nAllow: /\nSitemap: https://bilal-x.onrender.com/sitemap.xml\n",
-            200, {'Content-Type': 'text/plain'})
-
-@app.route('/sitemap.xml')
-def sitemap():
-    today = datetime.now().strftime('%Y-%m-%d')
-    return (f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-            f'<url><loc>https://bilal-x.onrender.com/</loc><lastmod>{today}</lastmod>'
-            f'<changefreq>weekly</changefreq><priority>1.0</priority></url></urlset>',
-            200, {'Content-Type': 'application/xml'})
-
-@app.route('/google78ab5f00e22cd85c.html')
-def google_verification():
-    return "google-site-verification: google78ab5f00e22cd85c.html", 200
+    return ("User-agent: *\nAllow: /\n", 200, {'Content-Type': 'text/plain'})
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
